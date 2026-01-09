@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home4/kaizenfi/atocode.eudeult1.armadaservers.com/
+    - /bin/cp -R * $DEPLOYPATH
