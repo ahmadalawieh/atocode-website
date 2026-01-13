@@ -585,7 +585,10 @@ h6 {
 .profile-photo {
     display: block;
     width: 100%;
-    height: auto;
+    aspect-ratio: 1 / 1;
+    /* Makes it a perfect square */
+    object-fit: cover;
+    /* Ensures the image fills the square without stretching */
     border-radius: calc(var(--radius-lg) - 2px);
     filter: grayscale(20%);
     transition: all var(--transition-base);
@@ -864,9 +867,11 @@ h6 {
     0% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
     }
+
     70% {
         box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
     }
+
     100% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
@@ -879,7 +884,7 @@ h6 {
         width: 50px;
         height: 50px;
     }
-    
+
     .whatsapp-float svg {
         width: 30px;
         height: 30px;
