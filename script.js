@@ -71,15 +71,18 @@ contactForm.addEventListener('submit', async (e) => {
     const formData = new FormData(contactForm);
 
     try {
-        // Send form data to PHP backend
-        const response = await fetch('contact-form.php', {
+        // Send form data to FormSubmit
+        const response = await fetch('https://formsubmit.co/ajax/ahmad.alawieh77@gmail.com', {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
             body: formData
         });
 
         const result = await response.json();
 
-        if (result.success) {
+        if (result.success === "true" || result.success === true) {
             // Show success message
             submitButton.textContent = '✓ Message Sent!';
             submitButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
@@ -88,7 +91,7 @@ contactForm.addEventListener('submit', async (e) => {
             contactForm.reset();
 
             // Optional: Show a more prominent success message
-            alert(result.message || 'Thank you for your message! We will get back to you soon.');
+            alert('Thank you for your message! We will get back to you soon.');
 
         } else {
             // Show error message
