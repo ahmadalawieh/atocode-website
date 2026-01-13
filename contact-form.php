@@ -50,8 +50,8 @@ if (!empty($errors)) {
 // ============================================
 // CONFIGURATION - UPDATE THESE VALUES
 // ============================================
-$to_email = 'hello@atocode.com'; // YOUR EMAIL ADDRESS
-$from_email = 'noreply@yourdomain.com'; // FROM EMAIL (use your domain)
+$to_email = 'ahmad.alawieh77@gmail.com'; // YOUR EMAIL ADDRESS
+$from_email = 'noreply@atocode.online'; // FROM EMAIL (use your domain)
 $subject = 'New Contact Form Submission - ATOCODE';
 // ============================================
 
@@ -100,11 +100,11 @@ if ($mail_sent) {
         'success' => true,
         'message' => 'Thank you for your message! We will get back to you soon.'
     ]);
-    
+
     // Optional: Log submission (create a logs directory first)
     // $log_entry = date('Y-m-d H:i:s') . " - $name ($email) - $service_display\n";
     // file_put_contents('logs/submissions.log', $log_entry, FILE_APPEND);
-    
+
 } else {
     // Failed to send
     http_response_code(500);
