@@ -245,6 +245,7 @@ h6 {
     display: flex;
     align-items: center;
     padding-top: 120px;
+    padding-bottom: 50px;
     overflow: hidden;
 }
 
@@ -500,7 +501,7 @@ h6 {
 }
 
 .service-features li::before {
-    content: "Ã¢Å“â€œ";
+    content: "\2713";
     position: absolute;
     left: 0;
     color: var(--color-accent-1);
