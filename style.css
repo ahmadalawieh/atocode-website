@@ -500,7 +500,7 @@ h6 {
 }
 
 .service-features li::before {
-    content: "✓";
+    content: "âœ“";
     position: absolute;
     left: 0;
     color: var(--color-accent-1);
@@ -571,21 +571,29 @@ h6 {
     justify-content: center;
 }
 
-.image-placeholder {
-    width: 400px;
-    height: 400px;
-    background: var(--color-bg-card);
-    border: 2px solid rgba(99, 102, 241, 0.3);
+/* Profile Photo Styles */
+.image-wrapper {
+    position: relative;
+    padding: 5px;
+    background: var(--gradient-primary);
     border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-lg);
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.placeholder-icon {
-    color: var(--color-accent-1);
-    opacity: 0.5;
+.profile-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--radius-lg) - 2px);
+    filter: grayscale(20%);
+    transition: all var(--transition-base);
+}
+
+.image-wrapper:hover .profile-photo {
+    filter: grayscale(0%);
+    transform: scale(1.02);
 }
 
 /* ===================================
