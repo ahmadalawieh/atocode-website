@@ -149,13 +149,13 @@ function typeWriter(element, text, speed = 50) {
 }
 
 // Animate numbers in stats
-function animateValue(element, start, end, duration) {
+function animateValue(element, start, end, duration, decimals = 0) {
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
 
-        const value = Math.floor(progress * (end - start) + start);
+        const value = (progress * (end - start) + start).toFixed(decimals);
         element.textContent = value + (element.dataset.suffix || '');
 
         if (progress < 1) {
@@ -170,13 +170,24 @@ const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
             const number = entry.target.querySelector('.stat-number');
-            const text = number.textContent;
-            const value = parseInt(text.replace(/\D/g, ''));
+            const originalText = number.textContent;
 
-            if (!isNaN(value)) {
-                number.dataset.suffix = text.replace(/[\d.]/g, '');
-                animateValue(number, 0, value, 2000);
-                entry.target.classList.add('animated');
+            // Extract the numeric part (including decimals) and the suffix
+            const match = originalText.match(/([\d.]+)(.*)/);
+
+            if (match) {
+                const value = parseFloat(match[1]);
+                const suffix = match[2];
+
+                // Determine number of decimal places
+                const decimalMatch = match[1].match(/\.(\d+)/);
+                const decimals = decimalMatch ? decimalMatch[1].length : 0;
+
+                if (!isNaN(value)) {
+                    number.dataset.suffix = suffix;
+                    animateValue(number, 0, value, 2000, decimals);
+                    entry.target.classList.add('animated');
+                }
             }
         }
     });
